@@ -15,7 +15,7 @@ const CreateOrder = (props: CreateOrderPublicProps) => {
     const fetchData = async () => {
       return await getMenuItems()};
 
-    // uncomment this when running the app
+    // comment this when running the app
     fetchData();
 
     // uncommenting this for testing the application in the browser only not for unit testing
