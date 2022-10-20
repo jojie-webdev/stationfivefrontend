@@ -7,20 +7,27 @@ import {
 import CreateOrderView from "./CreateOrder.view";
 
 const CreateOrder = (props: CreateOrderPublicProps) => {
-  
 
+  const [menuItems, setMenuItems] = useState<GetMenuItemsResponse>();
+  
   useEffect(() => {
     // TODO: Fetch menu data
     const fetchData = async () => {
-      
-    };
+      return await getMenuItems()};
 
+    // uncomment this when running the app
     fetchData();
+
+    // uncommenting this for testing the application in the browser only not for unit testing
+    // fetchData().then((res: GetMenuItemsResponse) => {
+    //   setMenuItems(res);
+    // });
+
   }, []);
 
   const generatedProps: CreateOrderPrivateProps = {
-    items: [],
-    rules: {},
+    items: menuItems ?  [...menuItems?.items] : [],
+    rules: menuItems ? {...menuItems.rules} : {},
   };
 
   return <CreateOrderView {...generatedProps} />;

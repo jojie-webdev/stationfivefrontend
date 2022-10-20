@@ -17,13 +17,14 @@ const RadioInput = (props: RadioInputProps) => {
       <label>
         <input
           data-testid="radio-input-control"
+          className="radio"
           type="radio"
           value={value}
-          checked={disabled}
-          disabled={checked}
-          onChange={() => ''}
+          checked={checked}
+          disabled={disabled}
+          onChange={(e) => onSelect((e.target as HTMLInputElement).value)}
         />
-        {label}
+        <span>{value}</span>
       </label>
     </div>
   );
