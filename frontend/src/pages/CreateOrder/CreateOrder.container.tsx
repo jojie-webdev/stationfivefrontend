@@ -13,7 +13,8 @@ const CreateOrder = (props: CreateOrderPublicProps) => {
   useEffect(() => {
     // TODO: Fetch menu data
     const fetchData = async () => {
-      return await getMenuItems()};
+      return await getMenuItems()
+    };
 
     // comment this when running the app
     fetchData();
