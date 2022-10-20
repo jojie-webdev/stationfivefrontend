@@ -27,7 +27,7 @@ const CreateOrder = (props: CreateOrderPublicProps) => {
   }, []);
 
   const generatedProps: CreateOrderPrivateProps = {
-    items: menuItems ?  [...menuItems?.items] : [],
+    items: menuItems ?  [...menuItems.items] : [],
     rules: menuItems ? {...menuItems.rules} : {},
   };
 
