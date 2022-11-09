@@ -5,5 +5,6 @@ const app: Application = express();
 
 app.use(express.json());
 // TODO: missing something here
+useMessageRouter(app);
 
 export default app;
