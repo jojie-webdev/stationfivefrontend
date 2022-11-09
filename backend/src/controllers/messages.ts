@@ -31,14 +31,15 @@ export const getMessageReply = async (
   let splittedString = input.message.split(" ");
   let result: string | null = '';
   for (let i in splittedString) {
-    let context = await services.database.getContextByValue(splittedString[i]);
+    let word =  splittedString[i].replace(/,/g, '').toLocaleLowerCase()
+    let context = await services.database.getContextByValue(word);
     if (context !== null) {
       result = context;
     }
   }
 
   // Check Cache, if cache exists, return data
-  if (Object.keys(services.cache.cache).length !== 0) {
+  if (Object.keys(services.cache.cache).length !== 0 && Object.keys(services.cache.cache).includes(result)) {
     return {
       reply_id: input.conversation_id,
       message: services.cache.cache[result]
@@ -47,6 +48,9 @@ export const getMessageReply = async (
 
   function isValidCodon(value: string): value is keyof typeof CONTEXT_MESSAGE {
     return value in CONTEXT_MESSAGE;
+  }
+  if (!result) {
+    result = CONTEXT_MESSAGE['NO_CONTEXT'];
   }
 
   if (result !== null && isValidCodon(result)) {
